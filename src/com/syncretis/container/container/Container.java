@@ -1,8 +1,6 @@
-package com.syncretis.container.abstraction;
+package com.syncretis.container.container;
 
-import com.syncretis.container.Containered;
-
-public abstract class Container implements Containered {
+public abstract class Container {
 
     private final double mass;
 
@@ -13,5 +11,4 @@ public abstract class Container implements Containered {
     public double getMass() {
         return mass;
     }
-
 }

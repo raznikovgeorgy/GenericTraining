@@ -1,10 +1,8 @@
-package com.syncretis.container.abstraction;
+package com.syncretis.container.container;
 
 import com.syncretis.material.Material;
-import com.syncretis.container.Containered;
 
-public class RecyclableMaterialContainer <MATERIAL extends Material> extends Container implements Containered {
-
+public class RecyclableMaterialContainer<MATERIAL extends Material> extends Container {
     private final Class<MATERIAL> type;
 
     public RecyclableMaterialContainer(double mass, Class<MATERIAL> type) {
@@ -16,4 +14,8 @@ public class RecyclableMaterialContainer <MATERIAL extends Material> extends Con
         return type;
     }
 
+    @Override
+    public String toString() {
+        return "Container type is: " + type.toString();
+    }
 }

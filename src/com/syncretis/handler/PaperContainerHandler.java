@@ -13,11 +13,12 @@ public class PaperContainerHandler<PAPER extends Paper> extends Handler<PAPER> {
     }
 
     @Override
-    public ProductContainer<PAPER> handle(RecyclableMaterialContainer<PAPER> container) {
+    public ProductContainer<PAPER> handle(RecyclableMaterialContainer<? extends Material> container) {
         ProductContainer result = new ProductContainer(container.getMass() * factor, container.getType());
         System.out.println(result.getMass());
         return result;
     }
+
     @Override
     public String toString() {
         return "compress factor is: " + factor;

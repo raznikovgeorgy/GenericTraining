@@ -5,5 +5,5 @@ import com.syncretis.container.container.RecyclableMaterialContainer;
 import com.syncretis.material.Material;
 
 public abstract class Handler<MATERIAL extends Material> {
-    public abstract ProductContainer<MATERIAL> handle(RecyclableMaterialContainer<MATERIAL> container);
+    public abstract ProductContainer<MATERIAL> handle(RecyclableMaterialContainer<? extends Material> container);
 }

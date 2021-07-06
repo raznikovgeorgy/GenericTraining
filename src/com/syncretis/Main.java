@@ -19,9 +19,9 @@ import java.util.Map;
 public class Main {
 
     public static void main(String[] args) {
-        RecyclableMaterialContainer<Glass> glassContainer = new RecyclableMaterialContainer(228, Glass.class);
-        RecyclableMaterialContainer<Plastic> plasticContainer = new RecyclableMaterialContainer(322, Plastic.class);
-        RecyclableMaterialContainer<Paper> paperContainer = new RecyclableMaterialContainer(777, Paper.class);
+        RecyclableMaterialContainer<Glass> glassContainer = new RecyclableMaterialContainer<>(228, Glass.class);
+        RecyclableMaterialContainer<Plastic> plasticContainer = new RecyclableMaterialContainer<>(322, Plastic.class);
+        RecyclableMaterialContainer<Paper> paperContainer = new RecyclableMaterialContainer<>(777, Paper.class);
 
         ArrayList<RecyclableMaterialContainer<? extends Material>> list = new ArrayList<>();
         list.add(glassContainer);
@@ -34,11 +34,11 @@ public class Main {
         }
         System.out.println("******************");
 
-        Handler glassHandler = new GlassContainerHandler(0.5);
-        Handler plasticHandler = new PlasticContainerHandler(0.4);
-        Handler paperHandler = new PaperContainerHandler(0.33);
+        Handler<Glass> glassHandler = new GlassContainerHandler<>(0.5);
+        Handler<Plastic> plasticHandler = new PlasticContainerHandler<>(0.4);
+        Handler<Paper> paperHandler = new PaperContainerHandler<>(0.33);
 
-        Map<Class<? extends Material>, Handler> materialHandlerMap = new HashMap<>();
+        Map<Class<? extends Material>, Handler<? extends Material>> materialHandlerMap = new HashMap<>();
         materialHandlerMap.put(Glass.class, glassHandler);
         materialHandlerMap.put(Plastic.class, plasticHandler);
         materialHandlerMap.put(Paper.class, paperHandler);
@@ -47,9 +47,10 @@ public class Main {
         ArrayList<ProductContainer<? extends Material>> outputList = new ArrayList<>();
 
         ResolverImpl resolver = new ResolverImpl(materialHandlerMap);
-        for (RecyclableMaterialContainer rmc : list) {
+        for (RecyclableMaterialContainer<? extends Material> rmc : list) {
             outputList.add(resolver.resolve(rmc).handle(rmc));
         }
+
         System.out.println("**********");
         for (int i = 0; i < outputList.size(); ++i) {
             System.out.println("Index is: " + i);

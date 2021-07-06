@@ -13,7 +13,7 @@ public class GlassContainerHandler<GLASS extends Glass> extends Handler<GLASS> {
     }
 
     @Override
-    public ProductContainer<GLASS> handle(RecyclableMaterialContainer<GLASS> container) {
+    public ProductContainer<GLASS> handle(RecyclableMaterialContainer<? extends Material> container) {
         ProductContainer result = new ProductContainer(container.getMass() * factor, container.getType());
         System.out.println(result.getMass());
         return result;

@@ -10,6 +10,7 @@ import com.syncretis.material.Glass;
 import com.syncretis.material.Material;
 import com.syncretis.material.Paper;
 import com.syncretis.material.Plastic;
+import com.syncretis.resolver.Resolver;
 import com.syncretis.resolver.ResolverImpl;
 
 import java.util.ArrayList;
@@ -48,7 +49,7 @@ public class Main {
 
         ResolverImpl resolver = new ResolverImpl(materialHandlerMap);
         for (RecyclableMaterialContainer<? extends Material> rmc : list) {
-            outputList.add(resolver.resolve(rmc).handle(rmc));
+            outputList.add(wildcardCapture(rmc, resolver));
         }
 
         System.out.println("**********");
@@ -58,5 +59,10 @@ public class Main {
             System.out.println("Container mass is: " + outputList.get(i).getMass());
         }
     }
+
+    static <MATERIAL extends Material> ProductContainer<MATERIAL> wildcardCapture(RecyclableMaterialContainer<MATERIAL> input, Resolver resolver) {
+        return resolver.resolve(input).handle(input);
+    }
+
 }
 

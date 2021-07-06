@@ -13,8 +13,8 @@ public class PlasticContainerHandler<PLASTIC extends Plastic> extends Handler<PL
     }
 
     @Override
-    public ProductContainer<PLASTIC> handle(RecyclableMaterialContainer<? extends Material> container) {
-        ProductContainer result = new ProductContainer(container.getMass() * factor, container.getType());
+    public ProductContainer<PLASTIC> handle(RecyclableMaterialContainer<PLASTIC> container) {
+        ProductContainer<PLASTIC> result = new ProductContainer<>(container.getMass() * factor, container.getType());
         System.out.println(result.getMass());
         return result;
     }

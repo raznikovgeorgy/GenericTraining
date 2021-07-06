@@ -3,7 +3,6 @@ package com.syncretis.handler;
 import com.syncretis.container.container.ProductContainer;
 import com.syncretis.container.container.RecyclableMaterialContainer;
 import com.syncretis.material.Glass;
-import com.syncretis.material.Material;
 
 public class GlassContainerHandler<GLASS extends Glass> extends Handler<GLASS> {
     private final double factor;
@@ -13,7 +12,7 @@ public class GlassContainerHandler<GLASS extends Glass> extends Handler<GLASS> {
     }
 
     @Override
-    public ProductContainer<GLASS> handle(RecyclableMaterialContainer<? extends Material> container) {
+    public ProductContainer<GLASS> handle(RecyclableMaterialContainer<GLASS> container) {
         ProductContainer result = new ProductContainer(container.getMass() * factor, container.getType());
         System.out.println(result.getMass());
         return result;
